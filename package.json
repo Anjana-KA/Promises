@@ -1,0 +1,14 @@
+{
+  "name": "promises-examples",
+  "version": "1.0.0",
+  "description": "promises-examples",
+  "main": "fetchData.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
