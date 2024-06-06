@@ -1,28 +1,16 @@
-const apiUrl1 = 'https://jsonplaceholder.typicode.com/posts/2';
-const apiUrl2 = 'https://api.nationalize.io?name=nathaniel';
+const promise1 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 1000, 'Promise 1');
+});
 
-async function fetchData(url, timeout) {
-  const response = await fetch(url);
-  const data = await response.json();
-  return data;
-}
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 2000, 'Promise 2');
+});
 
-async function fetchWithTimeout(url, timeout) {
-  return Promise.race([
-    fetchData(url),
-    new Promise((resolve, reject) => {
-      setTimeout(() => reject(new Error('Timeout')), timeout);
-    })
-  ]);
-}
+const promise3 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 3000, 'Promise 3');
+});
 
-async function getDataFromFastestSource() {
-  try {
-    const fastestData = await fetchWithTimeout(apiUrl1, 5000); // Timeout after 5 seconds
-    console.log('Data from fastest API:', fastestData);
-  } catch (error) {
-    console.error('Error:', error.message);
-  }
-}
-
-getDataFromFastestSource();
+Promise.race([promise1, promise2, promise3])
+  .then(value => {
+    console.log(value);
+  });
